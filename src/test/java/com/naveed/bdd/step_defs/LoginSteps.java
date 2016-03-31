@@ -14,7 +14,7 @@ public class LoginSteps {
  
     private Loginpage login;
 
-//    @Before		//any steps we want to perform before start of each scenario (test)
+//    @Before
     public LoginSteps(){  // public void setUp()
 
         System.out.println("constructor in LoginSteps "+ EnvSetup.WEBDRIVER_FLAG);
@@ -25,7 +25,7 @@ public class LoginSteps {
         login = new Loginpage();
     }
 
-//    @After        //any steps we want to perform after our tests
+//    @After
 //    public void tearDown() {
 //        System.out.println("\nTearDown runs ");
 //        EnvSetup.quitWebDriver();

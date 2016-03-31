@@ -37,7 +37,6 @@ public class CommonSteps {
     @After		//any steps we want to perform after our tests
     public void tearDown() {
         System.out.println("\nTearDown runs in CommonSteps");
-//        System.out.println(EnvSetup.FAIL_FLAG);
 //        if(EnvSetup.FAIL_FLAG)
 //            throw new AssertionError("test message");
         EnvSetup.quitWebDriver();
