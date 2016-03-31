@@ -1,0 +1,54 @@
+*******************************************************************
+*************	 MAVEN PROJECT Version 2.0 	*******************
+*******************************************************************
+In this version of maven_project, I have done following things
+
+1) Successfully added config/config.properties file under resources folder.
+2) Successfully introduced DriverUtil.java class under src/java/com.naveed.bdd/init/DriverUtil.java
+   All the webdriver initialization code has been moved inside this class. It read a system property "test-browser" which could be CHROME, FIREFOX, IE etc etc
+3) EnvSetup.java class updated with more slim/sleek code inside it.
+4) Successfully moved the page object classes ( Homepage & Loginpage) under page_objects folder and their corresponding element interfaces inside page_elements folder.
+
+
+*******************************************************************
+*************	 MAVEN PROJECT Version 3.0 	*******************
+*******************************************************************
+
+5) In this version 3.0, I introduced following fies
+	 test/java/com/naveed/bdd/step_defs/CommonSteps.java
+	 src/java/com/naveed/bdd/common/CommonPage.java (abstract class)
+	 src/java/com/naveed/bdd/common/LoadPage.java
+   The idea behind adding all these files is to define all the commonly used steps (marked in front of step below) in a common file so that all features can use them. 
+   public abstract class CommonPage should define some abstract methods which are then implemented by its child classes (Loginpage & Homepage)
+   so that dynamic object initialization should assign correct method calls for correct individual classes.
+
+   in combination with individual step definition classes for Homepage & Loginpage. The problem lies in following scenario when initializing current class object.
+
+Scenario: Testing Login with correct credentials
+    Given I load the ubluknetremit page 		==> defined in HomepageSteps.java
+    And I am on Homepage				==>     "    " CommonSteps.java
+    And I should see homepage loaded successfully	==>     "    " CommonSteps.java
+    When I click on pkr_button				==>     "    " CommonSteps.java
+    Then I am on Loginpage				==>     "    " CommonSteps.java
+    And I should see Loginpage loaded successfully	==>     "    " CommonSteps.java
+    And element user_email_field is visible		==>     "    " CommonSteps.java
+    And element user_password_field is visible		==>     "    " CommonSteps.java
+    When I entered username in user_email_field    	==>	"    " CommonSteps.java
+    And I entered password in user_password_field	==>     "    " LoginSteps.java
+    And I click on submit_button 			==>     "    " CommonSteps.java
+    Then I am on SubscriptionPage 			==>     "    " CommonSteps.java
+    And the following elements are visible		==>     "    " CommonSteps.java
+      | accountTypePanel |
+
+
+*******************************************************************
+*************	 MAVEN PROJECT Version 4.0 	*******************
+*******************************************************************
+
+6- In this version, I introduced following file
+	src\main\resources\config.properties
+
+   The idea behind adding this file is to define all the project related properties in a single file rather than depend on IntelliJ / Eclipse Test Configuration to set these values manually.
+   This way we can only ammend this config.properties file & fetch all those values dynamically in code at runtime. EnvSetup.java is also updated with method loadProperties(String).
+   Lastly, i have used two scenarios in Login.feature file to run them simultaneously one after the other to test the setup() and tearDown() works correctly.
+
