@@ -15,23 +15,9 @@ public class HomepageSteps{
 	
 	private Homepage		home;
 
-//	@Before		//any steps we want to perform before start of each scenario (test)
     public HomepageSteps(){
-		
-		System.out.println("constructor in HomepageSteps "+ EnvSetup.WEBDRIVER_FLAG);
-		
-		if(!EnvSetup.WEBDRIVER_FLAG){  // if webdriver is not yet set, set it up here
-			new EnvSetup().setDriver();			System.out.println("\tEnvSetup Initialized for 1st time");
-		}
 		home = new Homepage();
     }
-
-//	@After		//any steps we want to perform after our tests
-//	public void tearDown() {
-//		System.out.println("\nTearDown runs ");
-//		EnvSetup.quitWebDriver();
-//
-//	}
 
 	@Given("^user is on internet$")
 	public void the_site_visitor_is_on_internet() throws Throwable {

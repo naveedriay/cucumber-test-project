@@ -14,23 +14,9 @@ public class LoginSteps {
  
     private Loginpage login;
 
-//    @Before		//any steps we want to perform before start of each scenario (test)
-    public LoginSteps(){  // public void setUp()
-
-        System.out.println("constructor in LoginSteps "+ EnvSetup.WEBDRIVER_FLAG);
-
-        if(!EnvSetup.WEBDRIVER_FLAG){  // if webdriver is not yet set, set it up here
-            new EnvSetup().setDriver();			System.out.println("\tEnvSetup Initialized for 1st time");
-        }
+    public LoginSteps(){
         login = new Loginpage();
     }
-
-//    @After        //any steps we want to perform after our tests
-//    public void tearDown() {
-//        System.out.println("\nTearDown runs ");
-//        EnvSetup.quitWebDriver();
-//
-//    }
 
     @When("^I enter \"([^\"]*)\" in ([^\"]*)$")
     public void I_enter_in_field(String value, String field_name) throws Throwable {

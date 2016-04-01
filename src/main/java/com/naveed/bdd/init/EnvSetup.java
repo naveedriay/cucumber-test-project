@@ -37,7 +37,7 @@ public class EnvSetup {
 
 	}
 
-	public  WebDriver setDriver(){
+	public  WebDriver getDriver(){
 		try{
 			if(WEB_DRIVER == null){
 				WEB_DRIVER = new DriverUtil().getWebDriver();
