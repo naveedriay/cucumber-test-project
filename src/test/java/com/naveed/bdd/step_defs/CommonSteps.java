@@ -57,7 +57,7 @@ public class CommonSteps {
     @Then("^I should see ([^\"]*) loaded successfully$")
     public void I_should_see_loaded_successfully(String arg1) throws Throwable {
         page.pageIsShown();
-        EnvSetup.FAIL_FLAG = true;
+//        EnvSetup.FAIL_FLAG = true;
     }
 
     @When("^I click on ([^\"]*)$")
