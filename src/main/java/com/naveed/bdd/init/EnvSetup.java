@@ -16,7 +16,7 @@ public class EnvSetup {
 	public static String USERNAME ;//= System.getProperty("username");// "naveed.riay";
 	public static String PASSWORD ;//= System.getProperty("password");// "password01";
 
-    public static boolean       FAIL_FLAG       = false;
+//    public static boolean       FAIL_FLAG       = false;
 	public static boolean 		WEBDRIVER_FLAG 	= false;
 	public static WebDriver		WEB_DRIVER = null;
 

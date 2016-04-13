@@ -1,6 +1,5 @@
 package com.naveed.bdd.step_defs;
 
-import com.naveed.bdd.init.EnvSetup;
 import com.naveed.bdd.page_objects.Loginpage;
 
 import cucumber.api.java.After;

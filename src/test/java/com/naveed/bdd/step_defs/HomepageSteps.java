@@ -1,7 +1,6 @@
 package com.naveed.bdd.step_defs;
 
 import com.naveed.bdd.page_objects.Homepage;
-import com.naveed.bdd.init.EnvSetup;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
