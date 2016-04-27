@@ -1,18 +1,20 @@
 package com.naveed.bdd.init;
 
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
+@Component
 public class EnvSetup {
 	
 	public static String TEST_ENV ;//= System.getProperty("test-env"); // int, test, stage
 	public static String TEST_URL ;//= "http://www."+TEST_ENV+".brighttalk.com";
  	public static String HOME_URL ;//= System.getProperty("home-url");// "http://www.brighttalk.com";
-    public static String BROWSER  ;//= System.getProperty("test-browser"); // CHROME
+    public static String BROWSER  ;//= System.getProperty("test-browser"); // CHROME or FIREFOX
 	public static String USERNAME ;//= System.getProperty("username");// "naveed.riay";
 	public static String PASSWORD ;//= System.getProperty("password");// "password01";
 
@@ -22,8 +24,9 @@ public class EnvSetup {
 
     public        Properties    environmentProperties;
 
+    @Autowired
+    public DriverUtil    driverUtil;
 
-	
 	public EnvSetup(){
         // if no properties are found in Test Configuration (IDE settings) then load the properties from config.properties file
         try {
@@ -32,26 +35,29 @@ public class EnvSetup {
                 initializeProperties(environmentProperties);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+			System.out.println("Exception In Loading Properties: "+e.toString());
         }
 
 	}
 
 	public  WebDriver getDriver(){
 		try{
-			if(WEB_DRIVER == null){
-				WEB_DRIVER = new DriverUtil().getWebDriver();
+			if(WEB_DRIVER == null){  System.out.println("WEBDRIVER_FLAG: "+WEBDRIVER_FLAG + " driverUtil: "+driverUtil.toString());
+				WEB_DRIVER = driverUtil.getWebDriver();
 				WEBDRIVER_FLAG = true;
 			}
 
-		}catch(Exception ex){ System.out.println(ex); }
+		}catch(Exception ex){
+            System.out.println("WebDriver Initialization Failed: "+ex.toString());
+        }
 		return WEB_DRIVER;
 	}
 		
-	public static void quitWebDriver(){
+	public void quitWebDriver(){
 		WEB_DRIVER.quit();
 		WEBDRIVER_FLAG = false;
         WEB_DRIVER = null;
+        driverUtil.quitMe();
 	}
 
     private Properties loadProperties(String Properties) throws Exception {
@@ -61,7 +67,7 @@ public class EnvSetup {
         if (inputStream == null) {
             throw new FileNotFoundException("property file '" + Properties + "' not found in the classpath");
         }
-        properties.load(inputStream);
+        properties.load(inputStream); System.out.println("Properties Loaded");
         return properties;
     }
 

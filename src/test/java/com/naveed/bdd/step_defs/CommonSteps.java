@@ -11,6 +11,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 
 import java.util.List;
@@ -18,17 +20,21 @@ import java.util.List;
 /**
  * Created by nriay on 17/07/2015.
  */
+@ContextConfiguration(locations = {"file:src/main/resources/spring-config.xml"})
 public class CommonSteps {
 
     private CommonPage  page;
     private LoadPage    page_object;
+
+    @Autowired
+    public EnvSetup envSetup;
 
     @Before		//any steps we want to perform before start of each scenario (test)
     public void setUp(){
         System.out.println("setup in CommonSteps\nWebDriver:"+ EnvSetup.WEBDRIVER_FLAG);
 
         if(!EnvSetup.WEBDRIVER_FLAG){  // if webdriver is not yet set, set it up here
-            new EnvSetup().getDriver();			System.out.println("EnvSetup Initialized in CommonSteps.\nWebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
+            envSetup.getDriver();			System.out.println("EnvSetup Initialized in CommonSteps.\nWebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
         }
         page_object = new LoadPage();
     }
@@ -36,7 +42,7 @@ public class CommonSteps {
     @After		//any steps we want to perform after our tests
     public void tearDown() {
         System.out.println("\nTearDown runs in CommonSteps");
-        EnvSetup.quitWebDriver();
+        envSetup.quitWebDriver();
     }
 
     @Given("^I am on ([^\"]*)$")
