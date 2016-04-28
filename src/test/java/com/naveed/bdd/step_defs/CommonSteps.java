@@ -5,7 +5,6 @@ import com.naveed.bdd.common.LoadPage;
 import com.naveed.bdd.init.EnvSetup;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -26,10 +25,10 @@ public class CommonSteps {
 
     @Before		//any steps we want to perform before start of each scenario (test)
     public void setUp(){
-        System.out.println("setup in CommonSteps\n WebDriver:"+ EnvSetup.WEBDRIVER_FLAG);
+        System.out.println("setup in CommonSteps\nWebDriver:"+ EnvSetup.WEBDRIVER_FLAG);
 
         if(!EnvSetup.WEBDRIVER_FLAG){  // if webdriver is not yet set, set it up here
-            new EnvSetup().setDriver();			System.out.println("EnvSetup Initialized in CommonSteps.\n WebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
+            new EnvSetup().getDriver();			System.out.println("EnvSetup Initialized in CommonSteps.\nWebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
         }
         page_object = new LoadPage();
     }
@@ -37,8 +36,6 @@ public class CommonSteps {
     @After		//any steps we want to perform after our tests
     public void tearDown() {
         System.out.println("\nTearDown runs in CommonSteps");
-//        if(EnvSetup.FAIL_FLAG)
-//            throw new AssertionError("test message");
         EnvSetup.quitWebDriver();
     }
 
@@ -60,7 +57,7 @@ public class CommonSteps {
     @Then("^I should see ([^\"]*) loaded successfully$")
     public void I_should_see_loaded_successfully(String arg1) throws Throwable {
         page.pageIsShown();
-        EnvSetup.FAIL_FLAG = true;
+//        EnvSetup.FAIL_FLAG = true;
     }
 
     @When("^I click on ([^\"]*)$")
