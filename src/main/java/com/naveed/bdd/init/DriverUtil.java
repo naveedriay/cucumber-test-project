@@ -17,7 +17,7 @@ import java.net.MalformedURLException;
 @Component
 public class DriverUtil {
 
-    private WebDriver       driver = null;
+//    private WebDriver       driver = null;
     private WebDriverWait   driverWait = null;
 
     private enum BrowserType {
@@ -26,22 +26,15 @@ public class DriverUtil {
 
     public DriverUtil(){
         System.out.println("DriverUtil Constructor");
-        try{
-            if(driver == null){
-                driver = createWebDriver("FIREFOX"); //DriverUtil.BrowserType.valueOf(EnvSetup.BROWSER)
-                System.out.println("\twebdriver initialized for "+ EnvSetup.BROWSER);
-            }
-        }catch(Exception ex){ }
     }
 
-    public WebDriver getWebDriver(){
+    public void initWebDriver(){
         try{
-            if(driver == null){
-                driver = createWebDriver("FIREFOX"); //DriverUtil.BrowserType.valueOf(EnvSetup.BROWSER)
+            if(EnvSetup.WEB_DRIVER == null){
+                EnvSetup.WEB_DRIVER = createWebDriver("FIREFOX"); //DriverUtil.BrowserType.valueOf(EnvSetup.BROWSER)
                 System.out.println("\twebdriver initialized for "+ EnvSetup.BROWSER);
             }
         }catch(Exception ex){ }
-        return driver;
     }
 
     private  WebDriver createWebDriver(String browserType) throws MalformedURLException {
@@ -77,10 +70,6 @@ public class DriverUtil {
             default:
                 throw new RuntimeException("Unsupported Capability");
         }
-    }
-
-    public void quitMe(){
-        this.driver = null;
     }
 
 }

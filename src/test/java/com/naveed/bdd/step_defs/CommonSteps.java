@@ -34,7 +34,8 @@ public class CommonSteps {
         System.out.println("setup in CommonSteps\nWebDriver:"+ EnvSetup.WEBDRIVER_FLAG);
 
         if(!EnvSetup.WEBDRIVER_FLAG){  // if webdriver is not yet set, set it up here
-            envSetup.getDriver();			System.out.println("EnvSetup Initialized in CommonSteps.\nWebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
+            envSetup.setWebDriver();
+            System.out.println("EnvSetup Initialized in CommonSteps.\nWebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
         }
         page_object = new LoadPage();
     }
