@@ -11,6 +11,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
+import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -64,7 +65,7 @@ public class CommonSteps {
     @Then("^I should see ([^\"]*) loaded successfully$")
     public void I_should_see_loaded_successfully(String arg1) throws Throwable {
         page.pageIsShown();
-//        EnvSetup.FAIL_FLAG = true;
+
     }
 
     @When("^I click on ([^\"]*)$")
@@ -76,7 +77,7 @@ public class CommonSteps {
     @And("^element ([^\"]*) is visible$")
     public void element_is_visible(String element_name) throws Throwable {
         page.elementVisibility(element_name);
-        Thread.sleep(1000);
+
     }
 
 

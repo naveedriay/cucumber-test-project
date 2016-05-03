@@ -5,8 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
 import java.net.MalformedURLException;
@@ -17,8 +15,6 @@ import java.net.MalformedURLException;
 @Component
 public class DriverUtil {
 
-//    private WebDriver       driver = null;
-    private WebDriverWait   driverWait = null;
 
     private enum BrowserType {
         FIREFOX, MACCHROME, CHROME, GRIDFIREFOX, GRIDCHROME, MACFIREFOX

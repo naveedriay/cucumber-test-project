@@ -43,7 +43,8 @@ public class SubscriptionPage  extends CommonPage implements SubscriptionElement
     }
 
     public void elementVisibility(String element_name){
-        Assert.assertTrue(element_name + " is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
+        explicitWaitForElement(WaitConditions.elementToAppear, By.cssSelector(getElementCss(element_name)));
+//        Assert.assertTrue(element_name + " is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
     }
 
     public void verifyElementWithText(String element_name, String expected_text){

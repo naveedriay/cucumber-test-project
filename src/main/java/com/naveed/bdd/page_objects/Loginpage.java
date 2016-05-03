@@ -46,7 +46,8 @@ public class Loginpage extends CommonPage implements LoginElements {
 
     public void elementVisibility(String element_name){
 
-        Assert.assertTrue(element_name+" is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
+        explicitWaitForElement(WaitConditions.elementToAppear, By.cssSelector(getElementCss(element_name)));
+//        Assert.assertTrue(element_name + " is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
     }
 
     public void enterDataInField(String data, String field_name){
