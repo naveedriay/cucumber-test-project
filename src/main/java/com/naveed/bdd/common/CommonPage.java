@@ -49,14 +49,14 @@ public abstract class CommonPage {
 
         switch (condition){
             case elementToAppear:
-                driverWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+                driverWait.until(ExpectedConditions.visibilityOfElementLocated(by)); break;
             case elementToBeClickable:
             case elementToBeSelected:
-                driverWait.until(ExpectedConditions.elementToBeClickable(by));
+                driverWait.until(ExpectedConditions.elementToBeClickable(by)); break;
             case textToBePresentInElement:
-                driverWait.until(ExpectedConditions.textToBePresentInElementLocated(by, str));
+                driverWait.until(ExpectedConditions.textToBePresentInElementLocated(by, str)); break;
             case elementToDisappear:
-                driverWait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+                driverWait.until(ExpectedConditions.invisibilityOfElementLocated(by)); break;
         }
     }
 

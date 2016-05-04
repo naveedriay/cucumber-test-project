@@ -5,6 +5,7 @@ import com.naveed.bdd.common.LoadPage;
 import com.naveed.bdd.init.EnvSetup;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,6 +13,8 @@ import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -26,12 +29,13 @@ public class CommonSteps {
 
     private CommonPage  page;
     private LoadPage    page_object;
+    public  Scenario scenario;
 
     @Autowired
     public EnvSetup envSetup;
 
     @Before		//any steps we want to perform before start of each scenario (test)
-    public void setUp(){
+    public void setUp(Scenario scenario){
         System.out.println("setup in CommonSteps\nWebDriver:"+ EnvSetup.WEBDRIVER_FLAG);
 
         if(!EnvSetup.WEBDRIVER_FLAG){  // if webdriver is not yet set, set it up here
@@ -39,11 +43,17 @@ public class CommonSteps {
             System.out.println("EnvSetup Initialized in CommonSteps.\nWebDriver Initialized: "+ EnvSetup.WEBDRIVER_FLAG);
         }
         page_object = new LoadPage();
+        this.scenario = scenario;
     }
 
     @After		//any steps we want to perform after our tests
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
         System.out.println("\nTearDown runs in CommonSteps");
+        if (scenario.isFailed()) {
+            System.out.println("Screenshot is taken");
+            final byte[] screenshot = ((TakesScreenshot) EnvSetup.WEB_DRIVER).getScreenshotAs(OutputType.BYTES);
+            scenario.embed(screenshot, "image/png");
+        }
         envSetup.quitWebDriver();
     }
 
