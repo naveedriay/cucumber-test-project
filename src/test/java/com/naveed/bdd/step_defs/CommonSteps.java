@@ -2,6 +2,7 @@ package com.naveed.bdd.step_defs;
 
 import com.naveed.bdd.common.CommonPage;
 import com.naveed.bdd.common.LoadPage;
+import com.naveed.bdd.common.session.ScenarioSession;
 import com.naveed.bdd.init.EnvSetup;
 
 import cucumber.api.DataTable;
@@ -29,10 +30,13 @@ public class CommonSteps {
 
     private CommonPage  page;
     private LoadPage    page_object;
-    public  Scenario scenario;
+    private Scenario    scenario;
 
     @Autowired
     public EnvSetup envSetup;
+
+    @Autowired
+    public ScenarioSession scenarioSession;
 
     @Before		//any steps we want to perform before start of each scenario (test)
     public void setUp(Scenario scenario){

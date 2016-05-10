@@ -1,5 +1,7 @@
 package com.naveed.bdd.common.session;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,7 @@ import java.util.Map;
 /**
  * Created by nriay on 04/05/2016.
  */
+@Component
 public class ScenarioSession {
     private Map<String, Object> sessionData = new HashMap<String, Object>();
     private Map<String, List> list = new HashMap<>();
