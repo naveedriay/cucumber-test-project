@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class CommonPage {
 
-    private final int DEFAULT_WAIT = 5; // 5 seconds
+    private final int DEFAULT_WAIT = 5;
 
     public WebDriver        driver = null;
     public WebDriverWait    driverWait = null;
@@ -34,7 +34,7 @@ public abstract class CommonPage {
 
     public abstract String getElementCss(String element);
 
-    public void elementVisibility(String element){  }
+    public abstract void elementVisibility(String element);
 
     public void verifyElementWithText(String element, String text){}
 

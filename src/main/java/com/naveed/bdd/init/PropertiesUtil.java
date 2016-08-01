@@ -19,7 +19,7 @@ public class PropertiesUtil {
         // if no properties are found in Test Configuration (IDE settings) then load the properties from config.properties file
         try {
             if(EnvSetup.TEST_ENV == null ) {
-                loadProperties(properties_path);
+                loadProperties();
             }
         } catch (Exception e) {
         System.out.println("Exception Loading Properties: "+e.toString());
@@ -27,12 +27,12 @@ public class PropertiesUtil {
 
     }
 
-    public void loadProperties(String Properties) throws Exception {
+    public void loadProperties() throws Exception {
         Properties properties = new Properties();
-        InputStream inputStream =  Thread.currentThread().getContextClassLoader().getResourceAsStream(Properties);
+        InputStream inputStream =  Thread.currentThread().getContextClassLoader().getResourceAsStream(properties_path);
 
         if (inputStream == null) {
-            throw new FileNotFoundException("property file '" + Properties + "' not found in the classpath");
+            throw new FileNotFoundException("property file '" + properties_path + "' not found in the classpath");
         }
         properties.load(inputStream); System.out.println("Properties Loaded");
         initializeProperties(properties);
