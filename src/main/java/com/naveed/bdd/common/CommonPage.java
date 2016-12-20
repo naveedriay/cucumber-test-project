@@ -1,12 +1,15 @@
 package com.naveed.bdd.common;
 
 import com.naveed.bdd.init.EnvSetup;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * Created by nriay on 29/07/2015.
@@ -69,4 +72,49 @@ public abstract class CommonPage {
 //        driverWait.until(ExpectedConditions.elementSelectionStateToBe(element, yesOrNo));
 //    }
 
+    protected WebElement find(By locator) {
+        try {
+//            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", scrollIntoView(locator));
+            wait_until_true_or_timeout(ExpectedConditions.elementToBeClickable(locator));
+        } catch (NoSuchElementException ex) {
+            throw new NoSuchElementException(ex.getMessage());
+        } catch( InterruptedException ie) { ie.printStackTrace();}
+
+        return driver.findElement(locator);
+    }
+    // wait until condition is true or timeout is reached
+    protected <V> V wait_until_true_or_timeout(ExpectedCondition<V> isTrue) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, DEFAULT_WAIT*1000).ignoring(StaleElementReferenceException.class);
+        try {
+            return wait.until(isTrue);
+        } catch (TimeoutException rte) {
+            throw new TimeoutException(rte.getMessage() );
+        }
+    }
+
+    public WebElement scrollIntoView(By locator) throws InterruptedException{
+        WebElement element = driver.findElement(locator);
+        System.out.println(element.toString()+ " isElementInViewport() "+isElementInViewport(element));
+        if (!element.isDisplayed() || !isElementInViewport(element)) {
+            ((JavascriptExecutor) driver).executeScript("window.scrollTo(0," + (element.getLocation().y - 100) + ");", element);
+            Thread.sleep(500);
+        }
+        return element;
+    }
+
+    public boolean isElementInViewport(WebElement element) {
+        return (boolean) ((JavascriptExecutor) driver)
+                .executeScript(
+                        "var rect     = arguments[0].getBoundingClientRect(); " +
+                                "var vWidth   = window.innerWidth || document.documentElement.clientWidth; " +
+                                "var vHeight  = window.innerHeight || document.documentElement.clientHeight; " +
+
+                                "return ( rect.right > 0 && rect.bottom > 0 && rect.left < vWidth && rect.top < vHeight " +
+                                "&&  arguments[0].contains(document.elementFromPoint(rect.left,  rect.top)) " +
+                                "&&  arguments[0].contains(document.elementFromPoint(rect.right, rect.top)) " +
+                                "&&  arguments[0].contains(document.elementFromPoint(rect.right, rect.bottom)) " +
+                                "&&  arguments[0].contains(document.elementFromPoint(rect.left,  rect.bottom)) " +
+                                ");", element);
+    }
 }
