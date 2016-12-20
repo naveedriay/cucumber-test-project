@@ -7,14 +7,15 @@ public interface HomepageElements {
 	String searchForm = "#searchForm";
 	String userLogin = "#userAuthenticationActions";
 	String communities = ".featured-communities";
-	String site_footer = ".site-footer";
+	String site_footer = ".footer";
+	String site_header = ".header";
 
 	// LINKES FOR UBL-NET-REMIT HOMEPAGE
-	String loginLink = "#logintoublnetbanking";
+	String loginLink = "#LoginBtn";
 	String loginform = "#frmLogin";
-	String headerLogo = "#PNB_Header_Image1";
-	String headerImage = "#Image4";
-	String pkr_panel = "#pnlpkr";
+	String headerLogo = "#HeaderMenu_LinkLogo";
+	String headerImage = "#hdrbanner";
+	String pkr_panel = "#Indxcal";
 	String pkr_button = "#btnpkr";
 	String bgd_panel = "#pnlbdt";
 	String bgd_button="#btnbdt";

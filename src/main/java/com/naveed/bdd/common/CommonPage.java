@@ -74,13 +74,11 @@ public abstract class CommonPage {
 
     protected WebElement find(By locator) {
         try {
-//            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", scrollIntoView(locator));
+//            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", scrollIntoView(locator));
             wait_until_true_or_timeout(ExpectedConditions.elementToBeClickable(locator));
         } catch (NoSuchElementException ex) {
             throw new NoSuchElementException(ex.getMessage());
-        } catch( InterruptedException ie) { ie.printStackTrace();}
-
+        }
         return driver.findElement(locator);
     }
     // wait until condition is true or timeout is reached

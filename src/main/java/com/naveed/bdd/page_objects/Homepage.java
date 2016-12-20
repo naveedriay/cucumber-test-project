@@ -4,12 +4,13 @@ package com.naveed.bdd.page_objects;
 import com.naveed.bdd.common.CommonPage;
 import com.naveed.bdd.page_elements.HomepageElements;
 import com.naveed.bdd.init.EnvSetup;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertTrue;
 
 
 public class Homepage extends CommonPage implements HomepageElements {
@@ -38,15 +39,15 @@ public class Homepage extends CommonPage implements HomepageElements {
     
     public void pageIsShown() {
         //    	new WebElementWaiter().waitAndFindByXpath(driver, "//*[@id='logo']/img");
-    	Assert.assertTrue(driver.findElement(By.cssSelector(pkr_panel)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(loginLink)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(loginform)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(headerLogo)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(headerImage)).isDisplayed());
+    	assertTrue(find(By.cssSelector(pkr_panel)).isDisplayed());
+        assertTrue(find(By.cssSelector(site_footer)).isDisplayed());
+        assertTrue(find(By.cssSelector(site_header)).isDisplayed());
+        assertTrue(find(By.cssSelector(headerLogo)).isDisplayed());
+        assertTrue(find(By.cssSelector(headerImage)).isDisplayed());
     }
     
 	public void clickTheElement(String element_name){
-		driver.findElement(By.cssSelector(getElementCss(element_name))).click();
+		find(By.cssSelector(getElementCss(element_name))).click();
 	}
 
     public String getElementCss(String elementName) {
@@ -64,7 +65,7 @@ public class Homepage extends CommonPage implements HomepageElements {
 
     public void elementVisibility(String element_name){
 
-        Assert.assertTrue(element_name+" is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
+        assertTrue(element_name+" is not visible", find(By.cssSelector(getElementCss(element_name))).isDisplayed());
     }
     
   }

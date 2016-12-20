@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.Field;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by nriay on 03/08/2015.
  */
@@ -20,13 +22,13 @@ public class SubscriptionPage  extends CommonPage implements SubscriptionElement
     }
 
     public  void pageIsShown(){
-        Assert.assertTrue(driver.findElement(By.cssSelector(subscription_section_header)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(selected_product_type)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(all_beneficiary_list)).isDisplayed());
+        assertTrue(find(By.cssSelector(subscription_section_header)).isDisplayed());
+        assertTrue(find(By.cssSelector(selected_product_type)).isDisplayed());
+        assertTrue(find(By.cssSelector(all_beneficiary_list)).isDisplayed());
     }
 
     public  void clickTheElement(String element){
-        driver.findElement(By.cssSelector(getElementCss(element))).click();
+        find(By.cssSelector(getElementCss(element))).click();
     }
 
     public  String getElementCss(String elementName){
@@ -44,21 +46,21 @@ public class SubscriptionPage  extends CommonPage implements SubscriptionElement
 
     public void elementVisibility(String element_name){
         explicitWaitForElement(WaitConditions.elementToAppear, By.cssSelector(getElementCss(element_name)));
-//        Assert.assertTrue(element_name + " is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
+//        Assert.assertTrue(element_name + " is not visible", find(By.cssSelector(getElementCss(element_name))).isDisplayed());
     }
 
     public void verifyElementWithText(String element_name, String expected_text){
 
-        WebElement element = driver.findElement(By.cssSelector(getElementCss(element_name)));
+        WebElement element = find(By.cssSelector(getElementCss(element_name)));
         boolean visibility = element.isDisplayed();
         if(visibility){
             if((element.getText().contains(expected_text)))
-                Assert.assertTrue("matched", true);
+                assertTrue("matched", true);
             else
                 Assert.assertFalse("Not Matched", true);
         }
         else {
-            Assert.assertTrue(element_name + " is not visible", false);
+            assertTrue(element_name + " is not visible", false);
         }
     }
 }

@@ -1,13 +1,11 @@
 package com.naveed.bdd.page_objects;
 
 import com.naveed.bdd.common.CommonPage;
-import com.naveed.bdd.init.EnvSetup;
 import com.naveed.bdd.page_elements.LoginElements;
-import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 import java.lang.reflect.Field;
+
+import static org.junit.Assert.assertTrue;
 
 public class Loginpage extends CommonPage implements LoginElements {
 
@@ -18,17 +16,17 @@ public class Loginpage extends CommonPage implements LoginElements {
     }
 
     public void pageIsShown(){
-        Assert.assertTrue(driver.findElement(By.cssSelector(header)).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.cssSelector(footer)).isDisplayed());
+        assertTrue(find(By.cssSelector(header)).isDisplayed());
+        assertTrue(find(By.cssSelector(footer)).isDisplayed());
 
-        driver.findElement(By.cssSelector(current_date));
-        driver.findElement(By.cssSelector(today_exchange_rate));
-        driver.findElement(By.cssSelector(new_user_registration_link));
-        driver.findElement(By.cssSelector(forgot_password_link));
+        find(By.cssSelector(current_date));
+        find(By.cssSelector(today_exchange_rate));
+        find(By.cssSelector(new_user_registration_link));
+        find(By.cssSelector(forgot_password_link));
     }
 
     public void clickTheElement(String element_name){
-        driver.findElement(By.cssSelector(getElementCss(element_name))).click();
+        find(By.cssSelector(getElementCss(element_name))).click();
     }
 
     public String getElementCss(String elementName) {
@@ -47,11 +45,11 @@ public class Loginpage extends CommonPage implements LoginElements {
     public void elementVisibility(String element_name){
 
         explicitWaitForElement(WaitConditions.elementToAppear, By.cssSelector(getElementCss(element_name)));
-//        Assert.assertTrue(element_name + " is not visible", driver.findElement(By.cssSelector(getElementCss(element_name))).isDisplayed());
+//        Assert.assertTrue(element_name + " is not visible", find(By.cssSelector(getElementCss(element_name))).isDisplayed());
     }
 
     public void enterDataInField(String data, String field_name){
-        driver.findElement(By.cssSelector(getElementCss(field_name))).sendKeys(data);
+        find(By.cssSelector(getElementCss(field_name))).sendKeys(data);
     }
 
 }
