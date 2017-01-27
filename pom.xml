@@ -5,7 +5,10 @@
   <groupId>com.naveed.bdd</groupId>
   <artifactId>cucumber-test-project</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <modules>
+        <module>api_tests</module>
+    </modules>
+    <packaging>pom</packaging>
 
   <name>cucumber-test-project</name>
   <url>http://maven.apache.org</url>

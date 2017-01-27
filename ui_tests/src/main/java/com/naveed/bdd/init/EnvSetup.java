@@ -10,10 +10,10 @@ public class EnvSetup {
 	
 	public static String TEST_ENV ;//= System.getProperty("test-env"); // int, test, stage
 	public static String TEST_URL ;//= "http://www."+TEST_ENV+".brighttalk.com";
- 	public static String HOME_URL ;//= System.getProperty("home-url");// "http://www.brighttalk.com";
+ 	public static String HOME_URL ;//= System.getProperty("home-url");
     public static String BROWSER  ;//= System.getProperty("test-browser"); // CHROME or FIREFOX
-	public static String USERNAME ;//= System.getProperty("username");// "naveed.riay";
-	public static String PASSWORD ;//= System.getProperty("password");// "password01";
+	public static String USERNAME ;//= System.getProperty("username");
+	public static String PASSWORD ;//= System.getProperty("password");
 
 	public static boolean 		WEBDRIVER_FLAG 	= false;
 	public static WebDriver		WEB_DRIVER = null;

@@ -13,7 +13,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +63,12 @@ public class CommonSteps {
     @Given("^I am on ([^\"]*)$")
     public void I_am_on_page(String className) throws Throwable {
 //        CommonPage.CURRENT_PAGE = "com.naveed.bdd.page_objects."+className;
-//        page = (Homepage)Class.forName(CommonPage.CURRENT_PAGE).newInstance();
+//        page = (EbayHomepage)Class.forName(CommonPage.CURRENT_PAGE).newInstance();
         switch(className){
-            case "Homepage":
-                page = page_object.getHomepage(); break;
-            case "Loginpage":
-                page = page_object.getLoginpage(); break;
+            case "EbayHomepage":
+                page = page_object.getEbayHomepage(); break;
+            case "EbayLoginpage":
+                page = page_object.getEbayLoginpage(); break;
             case "SubscriptionPage":
                 page = page_object.getSubscriptionPage(); break;
         }

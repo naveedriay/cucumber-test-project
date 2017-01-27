@@ -3,7 +3,7 @@ package com.naveed.bdd.page_elements;
 /**
  * Created by nriay on 28/07/2015.
  */
-public interface LoginElements {
+public interface EbayLoginElements {
 
     String header = "#header";
     String footer = "#footer";
@@ -17,6 +17,10 @@ public interface LoginElements {
     String new_user_registration_link = "table tbody tr:nth-child(6) td a";
     String forgot_password_link = "table tbody tr:nth-child(8) td a";
 
-
+//    String  myEbayLink = "#gh-eb-My .gh-eb-li-a";
+//    String  signIn_userNameField = "#pri_signin input[type='text']";
+//    String  signIn_passwordField = "#pri_signin .m19";
+//    String  signIn_button        = "#sgnBt";
+//    String email = input[placeholder='Email or username']
 
 }

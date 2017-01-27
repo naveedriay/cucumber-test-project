@@ -1,18 +1,18 @@
 package com.naveed.bdd.page_objects;
 
 import com.naveed.bdd.common.CommonPage;
-import com.naveed.bdd.page_elements.LoginElements;
+import com.naveed.bdd.page_elements.EbayLoginElements;
 import org.openqa.selenium.By;
 import java.lang.reflect.Field;
 
 import static org.junit.Assert.assertTrue;
 
-public class Loginpage extends CommonPage implements LoginElements {
+public class EbayLoginpage extends CommonPage implements EbayLoginElements {
 
     public Field field = null;
 
-    public Loginpage() {
-        System.out.println("Loginpage() initialized");
+    public EbayLoginpage() {
+        System.out.println("EbayLoginpage() initialized");
     }
 
     public void pageIsShown(){
@@ -30,7 +30,7 @@ public class Loginpage extends CommonPage implements LoginElements {
     }
 
     public String getElementCss(String elementName) {
-        String className = "com.naveed.bdd.page_objects.Loginpage";
+        String className = "com.naveed.bdd.page_objects.EbayLoginpage";
         String elementCss = "";
         try {
             field = Class.forName(className).getField(elementName);

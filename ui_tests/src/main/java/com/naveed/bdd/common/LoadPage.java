@@ -1,7 +1,7 @@
 package com.naveed.bdd.common;
 
-import com.naveed.bdd.page_objects.Homepage;
-import com.naveed.bdd.page_objects.Loginpage;
+import com.naveed.bdd.page_objects.EbayHomepage;
+import com.naveed.bdd.page_objects.EbayLoginpage;
 import com.naveed.bdd.page_objects.SubscriptionPage;
 
 /**
@@ -9,26 +9,26 @@ import com.naveed.bdd.page_objects.SubscriptionPage;
  */
 public class LoadPage {
 
-    private Homepage homepage;
-    private Loginpage loginpage;
+    private EbayHomepage ebayHomepage;
+    private EbayLoginpage ebayLoginpage;
     private SubscriptionPage subscriptionPage;
 
     public LoadPage(){
 
     }
 
-    public Homepage getHomepage(){
-        if ( homepage == null ){
-            homepage = new Homepage();
+    public EbayHomepage getEbayHomepage(){
+        if ( ebayHomepage == null ){
+            ebayHomepage = new EbayHomepage();
         }
-        return homepage;
+        return ebayHomepage;
     }
 //
-    public Loginpage getLoginpage(){
-        if( loginpage == null){
-            loginpage = new Loginpage();
+    public EbayLoginpage getEbayLoginpage(){
+        if( ebayLoginpage == null){
+            ebayLoginpage = new EbayLoginpage();
         }
-        return loginpage;
+        return ebayLoginpage;
     }
 
     public SubscriptionPage getSubscriptionPage(){

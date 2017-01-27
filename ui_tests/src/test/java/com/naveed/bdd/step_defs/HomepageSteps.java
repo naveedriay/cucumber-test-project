@@ -1,10 +1,8 @@
 package com.naveed.bdd.step_defs;
 
-import com.naveed.bdd.page_objects.Homepage;
+import com.naveed.bdd.page_objects.EbayHomepage;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 
@@ -12,10 +10,10 @@ import cucumber.api.java.en.When;
 
 public class HomepageSteps{
 	
-	private Homepage		home;
+	private EbayHomepage home;
 
     public HomepageSteps(){
-		home = new Homepage();
+		home = new EbayHomepage();
     }
 
 	@Given("^user is on internet$")

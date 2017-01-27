@@ -1,20 +1,15 @@
 package com.naveed.bdd.step_defs;
 
-import com.naveed.bdd.page_objects.Loginpage;
+import com.naveed.bdd.page_objects.EbayLoginpage;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
  
 public class LoginSteps {
  
-    private Loginpage login;
+    private EbayLoginpage login;
 
     public LoginSteps(){
-        login = new Loginpage();
+        login = new EbayLoginpage();
     }
 
     @When("^I enter \"([^\"]*)\" in ([^\"]*)$")

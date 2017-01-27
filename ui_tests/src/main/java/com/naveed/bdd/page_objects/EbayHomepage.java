@@ -2,7 +2,7 @@ package com.naveed.bdd.page_objects;
 
 
 import com.naveed.bdd.common.CommonPage;
-import com.naveed.bdd.page_elements.HomepageElements;
+import com.naveed.bdd.page_elements.EbayHomepageElements;
 import com.naveed.bdd.init.EnvSetup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,18 +13,19 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertTrue;
 
 
-public class Homepage extends CommonPage implements HomepageElements {
+public class EbayHomepage extends CommonPage implements EbayHomepageElements {
 
     public Field field = null;
     private WebDriver driver = EnvSetup.WEB_DRIVER;
 
-    public Homepage() {
-        System.out.println("Homepage() initialized");
+    public EbayHomepage() {
+        System.out.println("EbayHomepage() initialized");
     }
 
     public void openPage() {
     	
     	driver.get(EnvSetup.TEST_URL);
+        driver.manage().deleteAllCookies();
     	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); // wait to load the page
     		
     }
@@ -32,18 +33,19 @@ public class Homepage extends CommonPage implements HomepageElements {
 	public void openPage(String sitename) {
         System.out.println(EnvSetup.HOME_URL +" WebDriver:"+driver);
         if(driver != null) {
-            driver.get(EnvSetup.HOME_URL); // or can use "https://www."+sitename+".com"
+            driver.navigate().to(EnvSetup.HOME_URL); // or can use "https://www."+sitename+".com"
+            driver.manage().deleteAllCookies();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); // wait to load the page
         }
 	}
     
     public void pageIsShown() {
         //    	new WebElementWaiter().waitAndFindByXpath(driver, "//*[@id='logo']/img");
-    	assertTrue(find(By.cssSelector(pkr_panel)).isDisplayed());
+    	assertTrue(find(By.cssSelector(navigation_bar)).isDisplayed());
         assertTrue(find(By.cssSelector(site_footer)).isDisplayed());
         assertTrue(find(By.cssSelector(site_header)).isDisplayed());
         assertTrue(find(By.cssSelector(headerLogo)).isDisplayed());
-        assertTrue(find(By.cssSelector(headerImage)).isDisplayed());
+        assertTrue(find(By.cssSelector(myEbayLink)).isDisplayed());
     }
     
 	public void clickTheElement(String element_name){
@@ -51,7 +53,7 @@ public class Homepage extends CommonPage implements HomepageElements {
 	}
 
     public String getElementCss(String elementName) {
-        String className = "com.naveed.bdd.page_objects.Homepage";
+        String className = "com.naveed.bdd.page_objects.EbayHomepage";
         String elementCss = "";
         try {
             field = Class.forName(className).getField(elementName);
